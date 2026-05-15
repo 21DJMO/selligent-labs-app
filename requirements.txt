@@ -1,0 +1,7 @@
+streamlit
+pandas
+numpy
+streamlit-echarts
+scikit-learn
+openpyxl
+xlrd

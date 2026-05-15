@@ -1,0 +1,730 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* { font-family: 'Inter', sans-serif; }
+
+/* ── Fondo principal ── */
+.stApp { background-color: #FFFEFF; }
+
+/* ── Sidebar fondo ── */
+[data-testid="stSidebar"],
+[data-testid="stSidebar"] > div:first-child {
+    background-color: #093134 !important;
+}
+
+/* ── Todo el texto del sidebar en blanco ── */
+[data-testid="stSidebar"],
+[data-testid="stSidebar"] *,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] div,
+[data-testid="stSidebar"] label {
+    color: #ffffff !important;
+}
+
+/* ── Título del sidebar ── */
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {
+    color: #ffffff !important; font-weight: 700; letter-spacing: 0.04em;
+}
+
+/* ── Etiqueta encima del radio ── */
+[data-testid="stSidebar"] .stRadio > label {
+    color: #7ab5b8 !important; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;
+}
+
+/* ── Items del menú ── */
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label,
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label span,
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label p,
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label div {
+    padding: 4px 10px !important; border-radius: 7px !important; margin: 1px 0 !important;
+    font-size: 13px !important; font-weight: 500 !important; color: #ffffff !important;
+    transition: background 0.2s ease !important; cursor: pointer !important;
+    text-transform: none !important; letter-spacing: normal !important;
+    display: flex !important; align-items: center !important; gap: 8px !important;
+}
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:hover {
+    background-color: #0d4a4e !important;
+}
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:has(input:checked),
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:has(input:checked) span,
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:has(input:checked) p {
+    background-color: #0e5558 !important; color: #ffffff !important;
+    font-weight: 600 !important; box-shadow: inset 3px 0 0 #5ec4c8 !important;
+}
+
+/* ── Keyframes para iconos del menú ── */
+@keyframes iconPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.65; transform: scale(0.92); }
+}
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+@keyframes iconGlow {
+    0%, 100% { filter: drop-shadow(0 0 3px #5ec4c8); }
+    50% { filter: drop-shadow(0 0 7px #5ec4c8) brightness(1.3); }
+}
+
+/* ── Ocultar SOLO el toggle/círculo nativo, NO el texto ── */
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label input[type="radio"],
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label [data-baseweb="radio"],
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label > div:first-child {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* ── Icono SVG via ::before para cada item del menú ── */
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+/* Icono Inicio (casa) */
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:nth-child(1)::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c8e8ea' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M3 11.5L12 3l9 8.5V21h-6v-5.5H9V21H3V11.5z'/%3E%3C/svg%3E");
+    animation-duration: 4s;
+}
+/* Icono Análisis de Ventas (gráfica de barras) */
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:nth-child(2)::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c8e8ea'%3E%3Crect x='3' y='11' width='4' height='10' rx='1'/%3E%3Crect x='10' y='5' width='4' height='16' rx='1'/%3E%3Crect x='17' y='8' width='4' height='13' rx='1'/%3E%3C/svg%3E");
+    animation-duration: 2.5s;
+    animation-delay: 0.3s;
+}
+/* Icono Modelo (cerebro/nodo neural) */
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:nth-child(3)::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c8e8ea' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='12' cy='9' r='6'/%3E%3Cline x1='8' y1='21' x2='16' y2='21'/%3E%3Cline x1='12' y1='15' x2='12' y2='21'/%3E%3Ccircle cx='12' cy='9' r='2.2' fill='%235ec4c8' stroke='none'/%3E%3C/svg%3E");
+    animation: iconPulse 3s ease-in-out infinite;
+    animation-delay: 0.6s;
+}
+/* Icono activo — glow turquesa */
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:has(input:checked)::before {
+    animation: iconGlow 2s ease-in-out infinite !important;
+}
+
+/* ── Ocultar menú de navegación superior en la barra lateral ── */
+[data-testid="stSidebarNav"] {
+    display: none !important;
+}
+
+/* ── Menú desplegable y opciones en verde oscuro ── */
+[data-baseweb="popover"] *,
+[data-baseweb="menu"] *,
+[data-baseweb="option"],
+[data-baseweb="option"] *,
+[role="listbox"] *,
+[role="option"],
+[role="option"] * {
+    background-color: #093134 !important;
+    color: #ffffff !important;
+}
+
+[data-baseweb="option"]:hover,
+[data-baseweb="option"]:hover *,
+[aria-selected="true"],
+[aria-selected="true"] * {
+    background-color: #0e5558 !important;
+    color: #ffffff !important;
+}
+
+/* ── Selectbox Principal (Contenedor seleccionado) ── */
+[data-testid="stSelectbox"] > div > div,
+[data-testid="stMultiSelect"] > div > div,
+.stSelectbox div[data-baseweb="select"] {
+    background-color: #093134 !important;
+    border: 1px solid #144f54 !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+}
+
+[data-testid="stSelectbox"] > div > div:hover,
+[data-testid="stMultiSelect"] > div > div:hover,
+.stSelectbox div[data-baseweb="select"]:hover {
+    border-color: #5ec4c8 !important;
+    box-shadow: 0 0 0 1px #5ec4c8 !important;
+}
+
+/* ── Texto seleccionado visible dentro del select ── */
+[data-testid="stSelectbox"] span,
+[data-testid="stSelectbox"] div[data-baseweb="select"] span,
+[data-testid="stSelectbox"] div[data-baseweb="select"] div,
+[data-testid="stSelectbox"] div[data-baseweb="select"] p,
+[data-testid="stSelectbox"] [data-baseweb="select"] *,
+[data-testid="stMultiSelect"] div[data-baseweb="select"] span,
+[data-testid="stMultiSelect"] div[data-baseweb="select"] div,
+[data-testid="stMultiSelect"] div[data-baseweb="select"] p,
+[data-testid="stMultiSelect"] [data-baseweb="select"] * {
+    color: #ffffff !important;
+    font-weight: 500 !important;
+}
+
+/* ── Flecha del dropdown ── */
+[data-testid="stSelectbox"] svg,
+[data-testid="stMultiSelect"] svg {
+    fill: #5ec4c8 !important;
+    color: #5ec4c8 !important;
+}
+
+/* ── Inputs de texto/número normales transparentes ── */
+.stTextInput input, 
+.stNumberInput input {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 8px !important;
+}
+.stTextInput input:focus, 
+.stNumberInput input:focus {
+    border-color: #5ec4c8 !important;
+    box-shadow: 0 0 0 1px #5ec4c8 !important;
+}
+
+/* ── File Uploader Dropzone estético ── */
+[data-testid="stFileUploadDropzone"] {
+    border: 2px dashed #b0d8da !important;
+    border-radius: 12px !important;
+    background-color: #f0fafa !important;
+    transition: all 0.3s ease !important;
+}
+[data-testid="stFileUploadDropzone"]:hover {
+    border-color: #5ec4c8 !important;
+    background-color: #e6f7f7 !important;
+}
+[data-testid="stFileUploadDropzone"] div[data-testid="stMarkdownContainer"] p {
+    color: #4a6e70 !important; font-weight: 500 !important; font-size: 15px !important;
+}
+[data-testid="stFileUploadDropzone"] small {
+    color: #7ab5b8 !important;
+}
+/* Ícono de upload */
+[data-testid="stFileUploadDropzone"] svg {
+    color: #5ec4c8 !important; width: 40px !important; height: 40px !important;
+    margin-bottom: 8px !important;
+}
+
+/* ── Estilos de Tabs Selligent ── */
+[data-testid="stTabs"] button[role="tab"] {
+    font-weight: 600 !important; font-size: 14px !important; color: #6b7280 !important;
+    border-bottom: 3px solid transparent !important; border-radius: 0 !important;
+    padding-bottom: 8px !important; background: transparent !important;
+}
+[data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
+    color: #093134 !important; border-bottom: 3px solid #5ec4c8 !important;
+}
+
+/* ── Botones primarios (Selligent Labs) ── */
+.stButton > button[kind="primary"] {
+    background-color: #5ec4c8 !important; border: none !important; color: #ffffff !important;
+    font-weight: 600 !important; border-radius: 8px !important; font-size: 15px !important;
+    padding: 10px 24px !important; box-shadow: 0 4px 10px rgba(94, 196, 200, 0.3) !important;
+    transition: all 0.2s ease-in-out !important;
+}
+.stButton > button[kind="primary"]:hover {
+    background-color: #4eb0b4 !important; transform: translateY(-1px) !important;
+    box-shadow: 0 6px 14px rgba(94, 196, 200, 0.4) !important;
+}
+.stButton > button[kind="primary"] p { color: #ffffff !important; }
+
+/* ── Botones secundarios (por ejemplo el de "Añadir nuevo análisis" o "Reclasificación") ── */
+.stButton > button:not([kind="primary"]) {
+    background-color: #093134 !important; border: 1px solid #144f54 !important; color: #ffffff !important;
+    font-weight: 600 !important; border-radius: 8px !important; padding: 10px 24px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important; transition: all 0.2s ease !important;
+}
+.stButton > button:not([kind="primary"]):hover {
+    background-color: #0e5558 !important;
+}
+/* Forzar texto e iconos claros para todos los botones secundarios */ 
+.stButton > button:not([kind="primary"]) p,
+.stButton > button:not([kind="primary"]) div,
+.stButton > button:not([kind="primary"]) span { color: #ffffff !important; fill: #ffffff !important; }
+
+/* ── Expander ── */
+[data-testid="stExpander"] {
+    border: 1.5px solid #c0dfe0 !important;
+    border-radius: 12px !important;
+    background: #f5fafa !important;
+}
+[data-testid="stExpander"] summary {
+    color: #093134 !important;
+    font-weight: 600 !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SELLIGENT LABS — MICRO-ANIMATIONS & HOVER EFFECTS
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Keyframes ─────────────────────────────────────────── */
+@keyframes sl-lift-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes sl-icon-bounce {
+    0%, 100% { transform: scale(1)     translateY(0);  }
+    40%       { transform: scale(1.18)  translateY(-4px); }
+    70%       { transform: scale(0.95)  translateY(1px);  }
+}
+@keyframes sl-icon-spin {
+    from { transform: rotate(0deg);   }
+    to   { transform: rotate(360deg); }
+}
+@keyframes sl-shimmer-sweep {
+    0%   { left: -80%; }
+    100% { left: 160%;  }
+}
+@keyframes sl-border-pulse {
+    0%, 100% { box-shadow: 0 0 0 0   rgba(94,196,200, 0);    }
+    50%       { box-shadow: 0 0 0 6px rgba(94,196,200, 0.22); }
+}
+@keyframes sl-badge-pop {
+    0%   { transform: scale(1);    }
+    50%  { transform: scale(1.12); }
+    100% { transform: scale(1);    }
+}
+@keyframes sl-value-count {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* ── KPI Cards ─────────────────────────────────────────── */
+.sl-kpi-card {
+    /* Box model — border-left uses CSS variable set inline on each card */
+    border: 1px solid #e8edf0;
+    border-left: 4px solid var(--kpi-border, #B4B2A9);
+    border-radius: 14px;
+    padding: 18px 20px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 112px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    /* Transitions — works because no conflicting inline styles */
+    transition:
+        transform          0.25s cubic-bezier(.34, 1.56, .64, 1),
+        box-shadow         0.25s ease,
+        border-color       0.25s ease,
+        border-left-width  0.25s ease;
+    will-change: transform;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Shimmer sweep on hover */
+.sl-kpi-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -80%;
+    width: 60%; height: 100%;
+    background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(94,196,200,0.10) 50%,
+        transparent 60%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s;
+}
+.sl-kpi-card:hover::after {
+    opacity: 1;
+    animation: sl-shimmer-sweep 0.65s ease forwards;
+}
+
+/* Lift + deeper shadow + wider accent stripe */
+.sl-kpi-card:hover {
+    transform:        translateY(-7px) scale(1.013);
+    box-shadow:       0 18px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(94,196,200,0.18);
+    border-color:     #c8e8ea;
+    border-left-width: 6px;
+}
+
+/* Value text pulses in when card is hovered */
+.sl-kpi-card:hover .sl-kpi-value {
+    animation: sl-value-count 0.22s ease both;
+    color: #093134 !important;
+}
+
+/* Icon bounces on card hover */
+.sl-kpi-card:hover .sl-kpi-icon svg,
+.sl-kpi-card:hover .sl-kpi-icon {
+    animation: sl-icon-bounce 0.55s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* ── Insight Cards ─────────────────────────────────────── */
+.sl-insight-card {
+    transition:
+        transform  0.22s cubic-bezier(.34, 1.56, .64, 1),
+        box-shadow 0.22s ease,
+        border-left-width 0.22s ease;
+    will-change: transform;
+    position: relative;
+    overflow: hidden;
+}
+.sl-insight-card:hover {
+    transform:          translateY(-5px);
+    box-shadow:         0 12px 28px rgba(0,0,0,0.10);
+    border-left-width:  8px !important;
+}
+
+/* Emoji icon bounces on insight hover */
+.sl-insight-card:hover .sl-insight-icon {
+    animation: sl-icon-bounce 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    display: inline-block;
+}
+
+/* ── Buttons — primary (turquoise) ─────────────────────── */
+.stButton > button[kind="primary"] {
+    position: relative;
+    overflow: hidden;
+    background-color: #5ec4c8 !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    padding: 10px 24px !important;
+    box-shadow: 0 4px 10px rgba(94,196,200,0.3) !important;
+    transition: all 0.22s ease-in-out !important;
+}
+.stButton > button[kind="primary"]::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.22) 50%, transparent 60%);
+    pointer-events: none;
+}
+.stButton > button[kind="primary"]:hover::after {
+    animation: sl-shimmer-sweep 0.55s ease forwards;
+}
+.stButton > button[kind="primary"]:hover {
+    background-color: #4eb0b4 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(94,196,200,0.45) !important;
+}
+.stButton > button[kind="primary"]:active {
+    transform: translateY(0) scale(0.97) !important;
+    box-shadow: 0 2px 6px rgba(94,196,200,0.3) !important;
+}
+.stButton > button[kind="primary"] p { color: #ffffff !important; }
+
+/* ── Buttons — secondary (dark) ───────────────────────── */
+.stButton > button:not([kind="primary"]) {
+    position: relative;
+    overflow: hidden;
+    background-color: #093134 !important;
+    border: 1px solid #144f54 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    padding: 10px 24px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    transition: all 0.22s ease !important;
+}
+.stButton > button:not([kind="primary"])::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(105deg, transparent 40%, rgba(94,196,200,0.12) 50%, transparent 60%);
+    pointer-events: none;
+}
+.stButton > button:not([kind="primary"]):hover::after {
+    animation: sl-shimmer-sweep 0.55s ease forwards;
+}
+.stButton > button:not([kind="primary"]):hover {
+    background-color: #0e5558 !important;
+    border-color: #5ec4c8 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(9,49,52,0.25) !important;
+}
+.stButton > button:not([kind="primary"]):active {
+    transform: translateY(0) scale(0.97) !important;
+}
+.stButton > button:not([kind="primary"]) p,
+.stButton > button:not([kind="primary"]) div,
+.stButton > button:not([kind="primary"]) span {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+/* ── "Añadir análisis" — special pulse ring ────────────── */
+/* Targets the full-width add button specifically */
+[data-testid="stButton"] button[kind="secondary"]:has(svg),
+.stButton > button:not([kind="primary"])[style*="width: 100%"],
+div[data-testid="column"] .stButton > button:not([kind="primary"]) {
+    animation: sl-border-pulse 2.8s ease-in-out infinite;
+}
+
+/* ── File uploader — animated border on hover ──────────── */
+[data-testid="stFileUploadDropzone"] {
+    border: 2px dashed #b0d8da !important;
+    border-radius: 12px !important;
+    background-color: #f0fafa !important;
+    transition: all 0.3s ease !important;
+    position: relative;
+    overflow: hidden;
+}
+[data-testid="stFileUploadDropzone"]:hover {
+    border-color: #5ec4c8 !important;
+    background-color: #e6f7f7 !important;
+    box-shadow: 0 0 0 4px rgba(94,196,200,0.12) !important;
+    transform: scale(1.005);
+}
+[data-testid="stFileUploadDropzone"] div[data-testid="stMarkdownContainer"] p {
+    color: #4a6e70 !important; font-weight: 500 !important; font-size: 15px !important;
+}
+[data-testid="stFileUploadDropzone"] small { color: #7ab5b8 !important; }
+[data-testid="stFileUploadDropzone"] svg {
+    color: #5ec4c8 !important; width: 40px !important; height: 40px !important;
+    margin-bottom: 8px !important;
+    transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+}
+[data-testid="stFileUploadDropzone"]:hover svg {
+    transform: translateY(-4px) scale(1.15);
+}
+
+/* ── Expander — smooth open/close ──────────────────────── */
+[data-testid="stExpander"] {
+    border: 1.5px solid #c0dfe0 !important;
+    border-radius: 12px !important;
+    background: #f5fafa !important;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease !important;
+}
+[data-testid="stExpander"]:hover {
+    border-color: #5ec4c8 !important;
+    box-shadow: 0 4px 14px rgba(94,196,200,0.14) !important;
+}
+
+/* ── Selectbox — focus glow ────────────────────────────── */
+[data-testid="stSelectbox"] > div > div,
+[data-testid="stMultiSelect"] > div > div,
+.stSelectbox div[data-baseweb="select"] {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* ── Sidebar nav items — slide-right on hover ──────────── */
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label {
+    transition: background 0.2s ease, transform 0.2s ease, padding-left 0.2s ease !important;
+}
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label:hover {
+    background-color: #0d4a4e !important;
+    transform: translateX(4px) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   SECTION LABELS — análisis de ventas
+   ══════════════════════════════════════════════════════════ */
+@keyframes sl-label-in {
+    from { opacity:0; transform:translateX(-10px); }
+    to   { opacity:1; transform:translateX(0); }
+}
+@keyframes sl-underline-grow {
+    from { transform:scaleX(0); }
+    to   { transform:scaleX(1); }
+}
+
+.sl-section-label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #093134;
+    letter-spacing: -0.02em;
+    margin-top: 20px;
+    margin-bottom: 14px;
+    padding: 10px 16px 10px 20px;
+    background: linear-gradient(135deg, #f0fafa 0%, #ffffff 100%);
+    border-radius: 10px;
+    border: 1px solid #d0e8e9;
+    border-left: 4px solid #5ec4c8;
+    width: 100%;
+    box-sizing: border-box;
+    animation: sl-label-in 0.4s ease both;
+}
+
+/* Shimmer accent line at bottom */
+.sl-section-label::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 20px; right: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, #5ec4c8, #6366f1, #5ec4c8);
+    border-radius: 2px;
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: sl-underline-grow 0.6s 0.2s ease forwards;
+}
+
+/* ══════════════════════════════════════════════════════════
+   KPI ROW — stagger fade-in on load
+   ══════════════════════════════════════════════════════════ */
+@keyframes sl-row-in {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
+}
+
+/* Target column groups that contain KPI cards */
+[data-testid="stHorizontalBlock"]:has(.sl-kpi-card) {
+    animation: sl-row-in 0.45s ease both;
+}
+
+/* ══════════════════════════════════════════════════════════
+   DIVIDER — premium thin gradient line
+   ══════════════════════════════════════════════════════════ */
+[data-testid="stDivider"] hr {
+    border: none !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, #c0dfe0 20%, #5ec4c8 50%, #c0dfe0 80%, transparent) !important;
+    margin: 24px 0 !important;
+    opacity: 0.8;
+}
+
+/* ══════════════════════════════════════════════════════════
+   DATAFRAME — subtle premium border
+   ══════════════════════════════════════════════════════════ */
+[data-testid="stDataFrame"] > div {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border: 1px solid #e0eeef !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   PREMIUM EXPANDER UPGRADE
+   ══════════════════════════════════════════════════════════ */
+[data-testid="stExpander"] {
+    border: 1px solid #c0dfe0 !important;
+    border-radius: 14px !important;
+    background: linear-gradient(135deg, #f8fdfd 0%, #f0fafa 100%) !important;
+    box-shadow: 0 2px 12px rgba(94,196,200,0.08), 0 1px 3px rgba(0,0,0,0.04) !important;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease !important;
+    overflow: hidden !important;
+}
+[data-testid="stExpander"]:hover {
+    border-color: #5ec4c8 !important;
+    box-shadow: 0 6px 24px rgba(94,196,200,0.18), 0 2px 8px rgba(0,0,0,0.06) !important;
+    transform: translateY(-1px) !important;
+}
+[data-testid="stExpander"] > details > summary {
+    background: linear-gradient(135deg, #f0fafa 0%, #e8f7f7 100%) !important;
+    border-bottom: 1px solid rgba(94,196,200,0.2) !important;
+    padding: 14px 18px !important;
+    color: #093134 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   PREMIUM FILE UPLOADER UPGRADE
+   ══════════════════════════════════════════════════════════ */
+@keyframes sl-upload-pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(94,196,200,0); }
+    50%      { box-shadow: 0 0 0 6px rgba(94,196,200,0.15); }
+}
+[data-testid="stFileUploadDropzone"] {
+    border: 2px dashed #9dcfd1 !important;
+    border-radius: 16px !important;
+    background: linear-gradient(135deg, #f5fcfc 0%, #edf8f8 100%) !important;
+    transition: all 0.3s cubic-bezier(.34,1.56,.64,1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 32px 20px !important;
+}
+[data-testid="stFileUploadDropzone"]:hover {
+    border-color: #5ec4c8 !important;
+    background: linear-gradient(135deg, #edf8f8 0%, #e0f5f5 100%) !important;
+    box-shadow: 0 0 0 4px rgba(94,196,200,0.15), 0 8px 24px rgba(94,196,200,0.12) !important;
+    transform: scale(1.008) !important;
+    animation: sl-upload-pulse 2s ease-in-out infinite !important;
+}
+[data-testid="stFileUploadDropzone"] svg {
+    color: #5ec4c8 !important;
+    width: 44px !important;
+    height: 44px !important;
+    margin-bottom: 10px !important;
+    transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), filter 0.3s ease !important;
+    filter: drop-shadow(0 2px 6px rgba(94,196,200,0.3)) !important;
+}
+[data-testid="stFileUploadDropzone"]:hover svg {
+    transform: translateY(-6px) scale(1.18) !important;
+    filter: drop-shadow(0 4px 12px rgba(94,196,200,0.5)) !important;
+}
+[data-testid="stFileUploadDropzone"] div[data-testid="stMarkdownContainer"] p {
+    color: #2e6e72 !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+}
+[data-testid="stFileUploadDropzone"] small {
+    color: #6aabae !important;
+    font-size: 12px !important;
+}
+
+/* ──────────────────────────────────────────────────────────
+   BANNER INTERACTIVITY (BADGES & CHIPS)
+   ────────────────────────────────────────────────────────── */
+.sl-banner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    cursor: default;
+    border: 1px solid transparent;
+}
+
+.sl-banner-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    filter: brightness(1.1);
+}
+
+.sl-banner-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 9px 16px;
+    backdrop-filter: blur(8px);
+    transition: all 0.35s cubic-bezier(.34,1.56,.64,1);
+    cursor: default;
+}
+
+.sl-banner-chip:hover {
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.35);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+}
+
+.sl-banner-chip span:first-child {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.sl-banner-chip:hover span:first-child {
+    transform: scale(1.2) rotate(5deg);
+}
